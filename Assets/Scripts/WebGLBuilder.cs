@@ -12,9 +12,6 @@ public class WebGLBuilder
            "Assets/Scenes/Game.unity", 
        };
 
-       PlayerSettings.defaultWebScreenWidth = 1340;
-       PlayerSettings.defaultWebScreenHeight = 710;
-
        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
        buildPlayerOptions.scenes = scenes;
        buildPlayerOptions.locationPathName = "webgl_build";
