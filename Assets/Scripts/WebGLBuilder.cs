@@ -1,13 +1,24 @@
 ﻿using UnityEditor;
 
-public class WebGLBuilder {
-    [MenuItem("Build/WebGL")]
-    public static void Build() {
-        BuildPipeline.BuildPlayer(
-            levels: new[] { "Assets/Scenes/Game.unity" }, // Укажите ваши сцены
-            locationPathName: "webgl_build",
-            target: BuildTarget.WebGL,
-            options: BuildOptions.None
-        );
-    }
+public class WebGLBuilder
+{
+   [MenuItem("Build/Build WebGL")]
+   public static void Build()
+   {
+       string[] scenes =
+       {
+           "Assets/Scenes/Game.unity", 
+       };
+
+       PlayerSettings.defaultWebScreenWidth = 1340;
+       PlayerSettings.defaultWebScreenHeight = 710;
+
+       BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+       buildPlayerOptions.scenes = scenes;
+       buildPlayerOptions.locationPathName = "webgl_build";
+       buildPlayerOptions.target = BuildTarget.WebGL;
+       buildPlayerOptions.options = BuildOptions.None;
+       
+       BuildPipeline.BuildPlayer(scenes, "webgl_build", BuildTarget.WebGL, BuildOptions.None);
+   }
 }
