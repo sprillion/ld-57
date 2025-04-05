@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     
     
     private float xRotation = 0f;
+    private float yRotation = 0f;
 
     private void LateUpdate()
     {
@@ -18,7 +19,10 @@ public class CameraController : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -verticalClamp, verticalClamp);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        player.Rotate(Vector3.up * mouseX);
+        yRotation += mouseX;
+
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        transform.position = player.position + Vector3.up * 2;
+        //player.Rotate(Vector3.up * mouseX);
     }
 }

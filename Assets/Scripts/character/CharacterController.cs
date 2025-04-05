@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Unity.VisualScripting;
+using UnityEngine;
 
 namespace ground.character
 {
@@ -21,12 +23,15 @@ namespace ground.character
 
         private void Update()
         {
-            Move();
-
             if (Input.GetButtonDown("Jump"))
             {
                 Jump();
             }
+        }
+
+        private void FixedUpdate()
+        {
+            Move();
         }
 
         private void Move()
@@ -37,13 +42,16 @@ namespace ground.character
             var cameraForward = cameraTransform.forward;
             cameraForward.y = 0;
             Vector3 direction = (cameraForward * v + cameraTransform.right * h).normalized;
-            direction.y = 0;
+
 
             Vector3 targetVelocity = direction * moveSpeed;
-            Vector3 velocityChange = targetVelocity - rb.linearVelocity;
-            velocityChange.y = 0;
+            targetVelocity.y = rb.linearVelocity.y;
+            // Vector3 velocityChange = targetVelocity - rb.linearVelocity;
+            // velocityChange.y = 0;
 
-            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+            rb.linearVelocity = targetVelocity;
+
+            //rb.AddForce(velocityChange, ForceMode.VelocityChange);
         }
 
         private void Jump()
