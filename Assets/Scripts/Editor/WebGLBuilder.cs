@@ -14,7 +14,7 @@ public class WebGLBuilder
 
        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
        buildPlayerOptions.scenes = scenes;
-       buildPlayerOptions.locationPathName = "webgl_build";
+       buildPlayerOptions.locationPathName = "Build";
        buildPlayerOptions.target = BuildTarget.WebGL;
        buildPlayerOptions.options = BuildOptions.None;
        
