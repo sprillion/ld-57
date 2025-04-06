@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using level;
 
 namespace items
 {
@@ -11,9 +13,12 @@ namespace items
 
         public int Money { get; private set; } = 1000;
 
+        private int _objectiveCount;
+
         public ItemService()
         {
             Instance = this;
+            LevelService.Instance.OnLevelComplete += Clear;
             Clear();
         }
 
@@ -24,14 +29,17 @@ namespace items
             {
                 _items.TryAdd(value, 0);
             }
+
+            _objectiveCount = LevelService.Instance.GetCurrentData().Objectives.First(o => o.ItemType == ItemType.Bone)
+                .Count;
         }
 
         public void AddItem(Item item)
         {
             _items[item.ItemType]++;
             Money += item.Price;
-            item.Take();
             OnItemsCountChanged?.Invoke(item.ItemType);
+            CheckObjective();
         }
 
         public int GetItemCount(ItemType itemType)
@@ -44,6 +52,12 @@ namespace items
             if (value > Money) return false;
             Money -= value;
             return true;
+        }
+
+        private void CheckObjective()
+        {
+            if (_items[ItemType.Bone] < _objectiveCount) return;
+            LevelService.Instance.ReadyToNext();
         }
     }
 }

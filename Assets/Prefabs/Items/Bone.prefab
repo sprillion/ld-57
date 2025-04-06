@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemType: 1
-  _value: 1
+  _value: 0
   _pointsToCheck:
   - {fileID: 3967263176275271485}
   - {fileID: 4937992182221911008}

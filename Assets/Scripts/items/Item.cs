@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using vfx;
 
 namespace items
 {
@@ -16,16 +17,20 @@ namespace items
         public ItemType ItemType => _itemType;
         public int Price => _value;
 
+        public Tip CurrentTip;
+
         public virtual void Take()
         {
             Taken = true;
             gameObject.SetActive(false);
+            CurrentTip?.Release();
+            CurrentTip = null;
         }
 
         public bool CheckFind()
         {
             return !Taken && _pointsToCheck.All(point =>
-                Physics.Raycast(new Ray(point.position, Vector3.down), 1, LayerMask.GetMask("Ground")));
+                Physics.Raycast(new Ray(point.position, Vector3.down), 2, LayerMask.GetMask("Ground")));
         }
     }
 }

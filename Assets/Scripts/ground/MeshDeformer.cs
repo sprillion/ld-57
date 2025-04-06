@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using character;
+using sfx;
 using UnityEngine;
 using upgrades;
 using vfx;
@@ -55,6 +56,7 @@ public class MeshDeformer : MonoBehaviour
             if (Vector3.Distance(_camera.transform.position, hit.point) > _maxDistance) return;
             _brush.Show(hit.point);
             VfxService.Instance.PlayDust(hit.point);
+            SoundService.Instance.PlaySound(SoundType.Dig);
             _clickPoint = hit.point;
             Vector3 localHitPoint = transform.InverseTransformPoint(hit.point);
             DeformMesh(localHitPoint);

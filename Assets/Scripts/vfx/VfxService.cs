@@ -4,35 +4,31 @@ namespace vfx
 {
     public class VfxService
     {
-
         public static VfxService Instance;
         
         private readonly Dust _dust;
-        private readonly Tip _tip;
+
+        private readonly ObjectPool _tipPool;
         
         public VfxService()
         {
             Instance = this;
 
+            _tipPool = new ObjectPool(Resources.Load<Tip>("Prefabs/Tip"), 1);
             _dust = GameObject.Instantiate(Resources.Load<Dust>("Prefabs/Dust"));
-            _tip = GameObject.Instantiate(Resources.Load<Tip>("Prefabs/Tip"));
             _dust.gameObject.SetActive(false);
-            _tip.Hide();
         }
 
-        public void PlayDust(Vector3 position)
+        public void PlayDust(Vector3 position)  
         {
             _dust.Play(position);
         }
 
-        public void ShowTip(Vector3 position)
+        public Tip ShowTip(Vector3 position)
         {
-            _tip.Show(position);
-        }
-
-        public void HideTip()
-        {
-            _tip.Hide();
+            var tip = _tipPool.GetObject<Tip>();
+            tip.Show(position);
+            return tip;
         }
     }
 }

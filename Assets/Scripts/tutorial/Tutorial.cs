@@ -6,24 +6,12 @@ namespace tutorial
 {
     public class Tutorial : MonoBehaviour
     {
-        [SerializeField] private Transform _tipPoint;
+        [SerializeField] private Item _itemToTip;
 
         private void Start()
         {
-            ItemService.Instance.OnItemsCountChanged += HideTip;
-            VfxService.Instance.ShowTip(_tipPoint.position);
+            _itemToTip.CurrentTip = VfxService.Instance.ShowTip(_itemToTip.transform.position);
         }
-
-        private void OnDestroy()
-        {
-            ItemService.Instance.OnItemsCountChanged -= HideTip;
-        }
-
-        private void HideTip(ItemType itemType)
-        {
-            if (itemType != ItemType.Bone) return;
-            ItemService.Instance.OnItemsCountChanged -= HideTip;
-            VfxService.Instance.HideTip();
-        }
+        
     }
 }

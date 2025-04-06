@@ -16,6 +16,7 @@ namespace ui
         private void Start()
         {
             ItemService.Instance.OnItemsCountChanged += OnItemCountChanged;
+            LevelService.Instance.OnLevelComplete += LoadData;
             
             _items.ForEach(i => _itemsMap.TryAdd(i.ItemType, i));
             

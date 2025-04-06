@@ -14,6 +14,8 @@ namespace items
             Taken = true;
             _disabledBone.SetActive(false);
             _enabledBone.SetActive(true);
+            CurrentTip?.Release();
+            CurrentTip = null;
         }
     }
 }
