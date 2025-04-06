@@ -15,3 +15,4 @@ MonoBehaviour:
   SoundType: 0
   AudioClip: {fileID: 8300000, guid: b80cfd7f7a15c224e9bc68586253429b, type: 3}
   Volume: 0.109
+  Pitch: {x: 0.7, y: 1.3}

@@ -11,14 +11,16 @@ namespace items
         public static ItemService Instance;
         public event Action<ItemType> OnItemsCountChanged;
 
-        public int Money { get; private set; } = 1000;
+        public int Money { get; private set; }
 
         private int _objectiveCount;
+
+        public event Action OnMoneyChanged;
 
         public ItemService()
         {
             Instance = this;
-            LevelService.Instance.OnLevelComplete += Clear;
+            LevelService.Instance.OnLevelStart += Clear;
             Clear();
         }
 
@@ -51,6 +53,7 @@ namespace items
         {
             if (value > Money) return false;
             Money -= value;
+            OnMoneyChanged?.Invoke();
             return true;
         }
 

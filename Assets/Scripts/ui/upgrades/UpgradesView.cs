@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using character;
 using UnityEngine;
 
 namespace ui
@@ -10,6 +9,8 @@ namespace ui
         
         public void Toggle()
         {
+            if (!Boot.HaveControl && !gameObject.activeSelf) return;
+            
             gameObject.SetActive(!gameObject.activeSelf);
             
             Cursor.lockState = gameObject.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;

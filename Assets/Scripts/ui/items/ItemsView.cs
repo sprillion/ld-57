@@ -16,7 +16,8 @@ namespace ui
         private void Start()
         {
             ItemService.Instance.OnItemsCountChanged += OnItemCountChanged;
-            LevelService.Instance.OnLevelComplete += LoadData;
+            ItemService.Instance.OnMoneyChanged += SetMoney;
+            LevelService.Instance.OnLevelStart += LoadData;
             
             _items.ForEach(i => _itemsMap.TryAdd(i.ItemType, i));
             
@@ -40,6 +41,11 @@ namespace ui
         private void OnItemCountChanged(ItemType itemType)
         {
             _itemsMap[itemType].SetValue(ItemService.Instance.GetItemCount(itemType));
+            SetMoney();
+        }
+
+        private void SetMoney()
+        {
             _moneyText.text = $"{ItemService.Instance.Money}";
         }
     }

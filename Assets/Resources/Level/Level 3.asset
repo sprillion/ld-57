@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Objectives:
   - ItemType: 1
-    Count: 15
+    Count: 30
+  - ItemType: 2
+    Count: 22
   - ItemType: 3
-    Count: 10
-  - ItemType: 4
     Count: 5
+  - ItemType: 4
+    Count: 2
+  - ItemType: 5
+    Count: 1

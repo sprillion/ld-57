@@ -17,3 +17,5 @@ MonoBehaviour:
     Count: 11
   - ItemType: 2
     Count: 3
+  - ItemType: 5
+    Count: 1

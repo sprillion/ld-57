@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using items;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,12 +13,16 @@ namespace level
         public static LevelService Instance;
 
         [SerializeField] private Button _nextLevelButton;
-        
+        [SerializeField] private Image _fill;
             
         private List<LevelData> _levelDatas;
-        private int _currentLevelNumber;
+
+        private Sequence _sequence;
+        
+        public int CurrentLevelNumber { get; private set; }
         public Level CurrentLevel { get; private set; }
 
+        public event Action OnLevelStart;
         public event Action OnLevelComplete;
 
         public void Initialize()
@@ -28,14 +33,14 @@ namespace level
 
         private void Start()
         {
-            _nextLevelButton.onClick.AddListener(NextLevel);
+            _nextLevelButton.onClick.AddListener(LaunchNextLevel);
             LoadLevel();
         }
         
         private void Update()
         {
             if (!_nextLevelButton.gameObject.activeSelf) return;
-            
+            if (!Boot.HaveControl) return;
             if (Input.GetKeyDown(KeyCode.G))
             {
                 _nextLevelButton.onClick?.Invoke();
@@ -44,7 +49,7 @@ namespace level
 
         public LevelData GetCurrentData()
         {
-            return _levelDatas[_currentLevelNumber];
+            return _levelDatas[CurrentLevelNumber];
         }
 
         public void ReadyToNext()
@@ -60,18 +65,33 @@ namespace level
                 CurrentLevel = null;
             }
 
-            var nextLevel = _currentLevelNumber % (_levelDatas.Count - 1);
+            var nextLevel = CurrentLevelNumber % (_levelDatas.Count - 1);
             CurrentLevel = Instantiate(Resources.Load<Level>($"Prefabs/Levels/Level_{nextLevel}"));
+            OnLevelStart?.Invoke();
+        }
+
+        private void LaunchNextLevel()
+        {
+            OnLevelComplete?.Invoke();
+            
+            _sequence?.Kill();
+            _sequence = DOTween.Sequence();
+            
+            _fill.DOFade(0, 0);
+            _fill.gameObject.SetActive(true);
+            
+            _sequence.Append(_fill.DOFade(1, 2f));
+            _sequence.AppendCallback(NextLevel);
+            _sequence.Append(_fill.DOFade(0, 2f));
         }
 
         private void NextLevel()
         {
             _nextLevelButton.gameObject.SetActive(false);
-            _currentLevelNumber++;
+            CurrentLevelNumber++;
             ItemService.Instance.Clear();
             
             LoadLevel();
-            OnLevelComplete?.Invoke();
         }
         
         

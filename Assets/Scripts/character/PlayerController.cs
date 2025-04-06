@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using level;
 using UnityEngine;
 
 namespace character
@@ -20,6 +21,9 @@ namespace character
         {
             rb = GetComponent<Rigidbody>();
             Cursor.lockState = CursorLockMode.Locked; // Скрыть и зафиксировать курсор
+
+            LevelService.Instance.OnLevelComplete += Disable;
+            LevelService.Instance.OnLevelStart += Enable;
         }
 
         private void Update()
@@ -33,8 +37,30 @@ namespace character
 
         private void FixedUpdate()
         {
-            if (!Boot.HaveControl) return;
+            if (!Boot.HaveControl)
+            {
+                if (!rb.isKinematic)
+                {
+                    rb.linearVelocity = Vector3.zero;
+                }
+                return;
+            }
             Move();
+        }
+
+        private void Disable()
+        {
+            Boot.HaveControl = false;
+            rb.isKinematic = true;
+            rb.interpolation = RigidbodyInterpolation.None;
+        }
+
+        private void Enable()
+        {
+            rb.position = Vector3.up * 0.5f;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+            rb.isKinematic = false;
+            Boot.HaveControl = true;
         }
 
         private void Move()

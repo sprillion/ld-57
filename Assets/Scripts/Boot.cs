@@ -1,4 +1,5 @@
-﻿using items;
+﻿using dialog;
+using items;
 using level;
 using sfx;
 using UnityEngine;
@@ -8,6 +9,7 @@ using vfx;
 public class Boot : MonoBehaviour
 {
     [SerializeField] private LevelService _levelService;
+    [SerializeField] private DialogService _dialogService;
     private ItemService _itemService;
     private UpgradeService _upgradeService;
     private VfxService _vfxService;
@@ -20,6 +22,7 @@ public class Boot : MonoBehaviour
         Application.targetFrameRate = 60;
 
         _levelService.Initialize();
+        _dialogService.Initialize();
         _itemService = new ItemService();
         _upgradeService = new UpgradeService();
         _vfxService = new VfxService();

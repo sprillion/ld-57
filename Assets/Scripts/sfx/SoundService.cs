@@ -17,8 +17,6 @@ namespace sfx
 
             _sounds = Resources.LoadAll<SoundData>("Sounds/").ToDictionary(s => s.SoundType, s => s);
             _audioPool = new ObjectPool(Resources.Load<AudioObject>("Prefabs/AudioObject"), 5);
-            
-            PlaySound(SoundType.Music);
         }
 
         public void PlaySound(SoundType soundType)

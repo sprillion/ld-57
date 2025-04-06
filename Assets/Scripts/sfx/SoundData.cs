@@ -11,6 +11,6 @@ namespace sfx
         [Range(0, 1)]
         public float Volume = 1;
 
-        public bool Loop = false;
+        public Vector2 Pitch;
     }
 }

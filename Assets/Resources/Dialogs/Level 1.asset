@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0a34e5423f4ba08865dc60df77f7d9, type: 3}
-  m_Name: Music
+  m_Script: {fileID: 11500000, guid: f19c2a13005d4c9c8b4bb2db6afdf681, type: 3}
+  m_Name: Level 1
   m_EditorClassIdentifier: 
-  SoundType: 2
-  AudioClip: {fileID: 8300000, guid: da6f37e1104fccd4ead25fc989a58350, type: 3}
-  Volume: 0.05
-  Loop: 1
+  DialogType: 0
+  Text: Finally, my first dig! I hope I find something ancient and get famous in
+    the archaeology club!
+  Voice: {fileID: 8300000, guid: d41ac574fdda95646a2bfa0ed2f382c0, type: 3}

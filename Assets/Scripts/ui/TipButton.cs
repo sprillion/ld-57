@@ -24,7 +24,7 @@ namespace ui
         private void Update()
         {
             _timer -= Time.deltaTime;
-
+            if (!Boot.HaveControl) return;
             if (Input.GetKeyDown(KeyCode.F))
             {
                 _button.onClick?.Invoke();

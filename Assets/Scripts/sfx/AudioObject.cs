@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace sfx
 {
@@ -13,12 +14,11 @@ namespace sfx
         {
             _audioSource.clip = soundData.AudioClip;
             _audioSource.volume = soundData.Volume;
-            _audioSource.loop = soundData.Loop;
+            _audioSource.pitch = Random.Range(soundData.Pitch.x, soundData.Pitch.y);
             
             gameObject.SetActive(true);
             _audioSource.Play();
             
-            if (soundData.Loop) return;
             DelayRelease().Forget();
         }
 
