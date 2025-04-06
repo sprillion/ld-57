@@ -1,19 +1,20 @@
 ﻿using System;
-using Unity.VisualScripting;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace ground.character
+namespace character
 {
     
     [RequireComponent(typeof(Rigidbody))]
-    public class CharacterController : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         public float moveSpeed = 5f;
         public float jumpForce = 5f;
         public Transform cameraTransform;
 
         private Rigidbody rb;
-        private bool isGrounded;
+
+        private bool _jumpDelay;
 
         private void Start()
         {
@@ -23,6 +24,7 @@ namespace ground.character
 
         private void Update()
         {
+            if (!Boot.HaveControl) return;
             if (Input.GetButtonDown("Jump"))
             {
                 Jump();
@@ -31,6 +33,7 @@ namespace ground.character
 
         private void FixedUpdate()
         {
+            if (!Boot.HaveControl) return;
             Move();
         }
 
@@ -46,25 +49,31 @@ namespace ground.character
 
             Vector3 targetVelocity = direction * moveSpeed;
             targetVelocity.y = rb.linearVelocity.y;
-            // Vector3 velocityChange = targetVelocity - rb.linearVelocity;
-            // velocityChange.y = 0;
 
             rb.linearVelocity = targetVelocity;
-
-            //rb.AddForce(velocityChange, ForceMode.VelocityChange);
         }
 
         private void Jump()
         {
+            if (_jumpDelay) return;
             if (!CheckGround()) return;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            DelayJump().Forget();
         }
 
         private bool CheckGround()
         {
-            var ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
-            return Physics.Raycast(ray, 0.2f, ~LayerMask.NameToLayer("Player"));
+            var check = Physics.SphereCast(transform.position + Vector3.up * 1.5f, 0.5f, Vector3.down, out var hit, 2f,
+                ~LayerMask.GetMask("Player"));
+            
+            return check;
+        }
+
+        private async UniTaskVoid DelayJump()
+        {
+            _jumpDelay = true;
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+            _jumpDelay = false;
         }
     }
 

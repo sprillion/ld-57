@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
+using character;
 using UnityEngine;
+using upgrades;
+using vfx;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshCollider))]
 public class MeshDeformer : MonoBehaviour
 {
     [Header("Настройки деформации")] 
-    [SerializeField] private float _radius = 0.5f;
-    [SerializeField] private float _deformationStrength = 0.5f;
     [SerializeField] private float _smoothness = 2f;
 
     [SerializeField] private float _destructionDepth = -1f;
     [SerializeField] private float _maxDistance = 5f;
+
+    [SerializeField] private Brush _brush;
 
     private Mesh _mesh;
     private Vector3[] _originalVertices;
@@ -21,7 +24,6 @@ public class MeshDeformer : MonoBehaviour
     private Vector3 _clickPoint;
 
     private Camera _camera;
-
     private void Awake()
     {
         _camera = Camera.main;
@@ -38,6 +40,7 @@ public class MeshDeformer : MonoBehaviour
 
     private void Update()
     {
+        if (!Boot.HaveControl) return;
         if (Input.GetMouseButtonDown(0))
         {
             HandleClick();
@@ -50,6 +53,8 @@ public class MeshDeformer : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject == gameObject)
         {
             if (Vector3.Distance(_camera.transform.position, hit.point) > _maxDistance) return;
+            _brush.Show(hit.point);
+            VfxService.Instance.PlayDust(hit.point);
             _clickPoint = hit.point;
             Vector3 localHitPoint = transform.InverseTransformPoint(hit.point);
             DeformMesh(localHitPoint);
@@ -64,10 +69,10 @@ public class MeshDeformer : MonoBehaviour
             if (_removedVertices.Contains(i)) continue;
 
             float distance = Vector3.Distance(_modifiedVertices[i], hitPoint);
-            if (distance < _radius)
+            if (distance < UpgradeService.Instance.GetValue(UpgradeType.Radius))
             {
-                float falloff = 1 - Mathf.Pow(distance / _radius, _smoothness);
-                _modifiedVertices[i] += Vector3.down * _deformationStrength * falloff;
+                float falloff = 1 - Mathf.Pow(distance / UpgradeService.Instance.GetValue(UpgradeType.Radius), _smoothness);
+                _modifiedVertices[i] += Vector3.down * UpgradeService.Instance.GetValue(UpgradeType.Strength) * falloff;
 
                 if (_modifiedVertices[i].y < _destructionDepth)
                 {
