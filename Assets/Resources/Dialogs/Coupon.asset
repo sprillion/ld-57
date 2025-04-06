@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19c2a13005d4c9c8b4bb2db6afdf681, type: 3}
   m_Name: Coupon
   m_EditorClassIdentifier: 
-  DialogType: 6
+  DialogType: 5
   Text: "Sweet, a free coffee coupon!... Ugh, never mind\u2014it\u2019s been expired
     since the Stone Age (aka 2007)."
   Voice: {fileID: 8300000, guid: c15466729b57fc242acbb643a2af5e4e, type: 3}

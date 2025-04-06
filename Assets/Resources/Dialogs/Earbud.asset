@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19c2a13005d4c9c8b4bb2db6afdf681, type: 3}
   m_Name: Earbud
   m_EditorClassIdentifier: 
-  DialogType: 7
+  DialogType: 6
   Text: "A single earbud? Yeah, good luck finding its twin \u2014 it\u2019s halfway
     to Antarctica in a sock dimension by now."
   Voice: {fileID: 8300000, guid: 5b4541992b6b20b499ba69a34e26f6cb, type: 3}

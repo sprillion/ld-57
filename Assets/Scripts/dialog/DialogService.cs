@@ -27,6 +27,7 @@ namespace dialog
 
             LevelService.Instance.OnLevelComplete += () => PlayDialog(DialogType.GoodDay);
             LevelService.Instance.OnLevelStart += OnLevelStart;
+            LevelService.Instance.OnFinish += () => PlayDialog(DialogType.Finish);
         }
 
         public void PlayDialog(DialogType dialogType)
@@ -56,7 +57,6 @@ namespace dialog
                 1 => DialogType.Level2,
                 2 => DialogType.Level3,
                 3 => DialogType.Level4,
-                4 => DialogType.Level5,
                 _ => DialogType.Level1
             };
             

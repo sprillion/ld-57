@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level 4
   m_EditorClassIdentifier: 
   DialogType: 3
-  Text: "They say a massive battle took place here five millennia ago\u2026 Who knows
-    what\u2019s still buried out there?"
-  Voice: {fileID: 8300000, guid: 6d2f0b0e86c1bd5428fde770b3da3e0a, type: 3}
+  Text: "This is where compasses lose their minds \u2014 something tells me fortune
+    is on my side!"
+  Voice: {fileID: 8300000, guid: d0ca89cb3ee3f37418f85fd609be07ef, type: 3}

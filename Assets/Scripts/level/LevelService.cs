@@ -14,6 +14,7 @@ namespace level
 
         [SerializeField] private Button _nextLevelButton;
         [SerializeField] private Image _fill;
+        [SerializeField] private GameObject _finishScreen;
             
         private List<LevelData> _levelDatas;
 
@@ -24,6 +25,7 @@ namespace level
 
         public event Action OnLevelStart;
         public event Action OnLevelComplete;
+        public event Action OnFinish;
 
         public void Initialize()
         {
@@ -65,8 +67,14 @@ namespace level
                 CurrentLevel = null;
             }
 
-            var nextLevel = CurrentLevelNumber % (_levelDatas.Count - 1);
-            CurrentLevel = Instantiate(Resources.Load<Level>($"Prefabs/Levels/Level_{nextLevel}"));
+            if (CurrentLevelNumber >= _levelDatas.Count)
+            {
+                OnFinish?.Invoke();
+                _finishScreen.gameObject.SetActive(true);
+                return;
+            }
+            
+            CurrentLevel = Instantiate(Resources.Load<Level>($"Prefabs/Levels/Level_{CurrentLevelNumber}"));
             OnLevelStart?.Invoke();
         }
 
@@ -83,13 +91,16 @@ namespace level
             _sequence.Append(_fill.DOFade(1, 2f));
             _sequence.AppendCallback(NextLevel);
             _sequence.Append(_fill.DOFade(0, 2f));
+            _sequence.OnComplete(() =>
+            {
+                _fill.gameObject.SetActive(false);
+            });
         }
 
         private void NextLevel()
         {
             _nextLevelButton.gameObject.SetActive(false);
             CurrentLevelNumber++;
-            ItemService.Instance.Clear();
             
             LoadLevel();
         }

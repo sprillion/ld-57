@@ -6,12 +6,12 @@
         Level2,
         Level3,
         Level4,
-        Level5,
         Phone,
         Coupon,
         Earbud,
         Microphone,
         Column,
         GoodDay,
+        Finish
     }
 }

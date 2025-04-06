@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f19c2a13005d4c9c8b4bb2db6afdf681, type: 3}
-  m_Name: Level 5
+  m_Name: Finish
   m_EditorClassIdentifier: 
-  DialogType: 4
-  Text: "They say a massive battle took place here five millennia ago\u2026 Who knows
-    what\u2019s still buried out there?"
-  Voice: {fileID: 8300000, guid: 6d2f0b0e86c1bd5428fde770b3da3e0a, type: 3}
+  DialogType: 10
+  Text: "Incredible! I\u2019ve done it \u2014 soon, the entire archaeology world
+    will remember me! History, here I come!"
+  Voice: {fileID: 8300000, guid: 05838e33b647b21468d9174f98907d97, type: 3}

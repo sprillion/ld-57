@@ -75,7 +75,7 @@ MonoBehaviour:
   - {fileID: 5499570356405583537}
   - {fileID: 8074850337604480543}
   CurrentTip: {fileID: 0}
-  _dialogType: 9
+  _dialogType: 8
 --- !u!1 &3181982397410474184
 GameObject:
   m_ObjectHideFlags: 0

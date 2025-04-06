@@ -73,7 +73,7 @@ MonoBehaviour:
   _pointsToCheck:
   - {fileID: 1308034834023142983}
   CurrentTip: {fileID: 0}
-  _dialogType: 7
+  _dialogType: 6
 --- !u!1 &5335783918160957308
 GameObject:
   m_ObjectHideFlags: 0

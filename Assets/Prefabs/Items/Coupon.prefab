@@ -346,7 +346,7 @@ MonoBehaviour:
   - {fileID: 4958514377456061279}
   - {fileID: 7026282813873362146}
   CurrentTip: {fileID: 0}
-  _dialogType: 6
+  _dialogType: 5
 --- !u!1 &6325248485594024908
 GameObject:
   m_ObjectHideFlags: 0

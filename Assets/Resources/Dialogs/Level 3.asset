@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level 3
   m_EditorClassIdentifier: 
   DialogType: 2
-  Text: "They say a massive battle took place here five millennia ago\u2026 Who knows
-    what\u2019s still buried out there?"
-  Voice: {fileID: 8300000, guid: 6d2f0b0e86c1bd5428fde770b3da3e0a, type: 3}
+  Text: Millions of years ago, dinosaurs and ancient beasts trekked across this very
+    land in an epic migration!
+  Voice: {fileID: 8300000, guid: 8312dc3d89be71145be9037d643bedf4, type: 3}

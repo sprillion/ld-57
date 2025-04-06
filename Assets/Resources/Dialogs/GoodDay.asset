@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19c2a13005d4c9c8b4bb2db6afdf681, type: 3}
   m_Name: GoodDay
   m_EditorClassIdentifier: 
-  DialogType: 10
+  DialogType: 9
   Text: Good Day!
   Voice: {fileID: 8300000, guid: 367c9ee93768bbe4683bc0260cd01d01, type: 3}

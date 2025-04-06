@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19c2a13005d4c9c8b4bb2db6afdf681, type: 3}
   m_Name: Microphone
   m_EditorClassIdentifier: 
-  DialogType: 8
+  DialogType: 7
   Text: A microphone? I'm at the ends of the earth, where only a handful of people
     have ever been. Yet even here, karaoke lovers have already left their mark.
   Voice: {fileID: 8300000, guid: 063c84f532747734c80dfbe622d965e4, type: 3}

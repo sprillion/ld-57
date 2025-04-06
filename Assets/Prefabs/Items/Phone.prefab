@@ -169,7 +169,7 @@ MonoBehaviour:
   - {fileID: 811712214976294650}
   - {fileID: 6090888662152117411}
   CurrentTip: {fileID: 0}
-  _dialogType: 5
+  _dialogType: 4
 --- !u!1001 &3928038125371606776
 PrefabInstance:
   m_ObjectHideFlags: 0
