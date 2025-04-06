@@ -2952,7 +2952,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: cde20586e34a8254fad2f921fb457699, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 8b273f0c5b1be6d4dbb3f358de534111, type: 2}
+      objectReference: {fileID: 2100000, guid: 6adbe928bd433044281f63768a13fe12, type: 2}
     - target: {fileID: 919132149155446097, guid: cde20586e34a8254fad2f921fb457699, type: 3}
       propertyPath: m_Name
       value: Wall
@@ -4122,7 +4122,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2ac0596a477187e4eb6af95884a92983, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2af0f34278194204687abda048ec9de7, type: 2}
+      objectReference: {fileID: 2100000, guid: 465b4b4d22c47db4b8860a31d0b34d65, type: 2}
     - target: {fileID: 919132149155446097, guid: 2ac0596a477187e4eb6af95884a92983, type: 3}
       propertyPath: m_Name
       value: Ground
