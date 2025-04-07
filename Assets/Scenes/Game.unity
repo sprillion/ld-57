@@ -2743,6 +2743,7 @@ MonoBehaviour:
   _nextLevelButton: {fileID: 1576918566}
   _fill: {fileID: 1736538221}
   _finishScreen: {fileID: 1531522569}
+  UiParent: {fileID: 363735849}
 --- !u!4 &611563716
 Transform:
   m_ObjectHideFlags: 0

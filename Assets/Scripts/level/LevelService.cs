@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
-using items;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +14,8 @@ namespace level
         [SerializeField] private Button _nextLevelButton;
         [SerializeField] private Image _fill;
         [SerializeField] private GameObject _finishScreen;
+
+        public Transform UiParent;
             
         private List<LevelData> _levelDatas;
 

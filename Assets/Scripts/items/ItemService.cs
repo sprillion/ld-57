@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using level;
+using ui;
+using UnityEngine;
 
 namespace items
 {
     public class ItemService
     {
         private readonly Dictionary<ItemType, int> _items = new Dictionary<ItemType, int>();
+        
+        private int _objectiveCount;
+
+        private readonly ObjectPool _addMoneyPool;
+        
         public static ItemService Instance;
         public event Action<ItemType> OnItemsCountChanged;
 
         public int Money { get; private set; }
 
-        private int _objectiveCount;
 
         public event Action OnMoneyChanged;
 
@@ -22,6 +28,8 @@ namespace items
             Instance = this;
             LevelService.Instance.OnLevelStart += Clear;
             Clear();
+
+            _addMoneyPool = new ObjectPool(Resources.Load<AddMoney>("Prefabs/AddMoney"), 2, LevelService.Instance.UiParent);
         }
 
         public void Clear()
@@ -40,6 +48,7 @@ namespace items
         {
             _items[item.ItemType]++;
             Money += item.Price;
+            ShowAddMoney(item.Price);
             OnItemsCountChanged?.Invoke(item.ItemType);
             CheckObjective();
         }
@@ -61,6 +70,12 @@ namespace items
         {
             if (_items[ItemType.Bone] < _objectiveCount) return;
             LevelService.Instance.ReadyToNext();
+        }
+
+        private void ShowAddMoney(int value)
+        {
+            if (value <= 0) return;
+            _addMoneyPool.GetObject<AddMoney>().Show(value);
         }
     }
 }
